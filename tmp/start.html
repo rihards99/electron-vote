@@ -1,0 +1,32 @@
+<div class="jumbotron">
+	<div class="container">
+		<h1>Democratinator</h1>
+		<p>Choose the type of vote to start. To learn more <a class="btn btn-info" href="#" role="button">Read manual</a></p>
+	</div>
+</div>
+
+<div class="col-xs-10 col-xs-offset-1">
+	<div style="padding-bottom: 20px">
+		<form class="form-inline">
+			<div class="form-group">
+				<label for="experts">Experts: </label>
+				<input type="number" min="1" class="form-control" id="experts">
+			</div>
+			<div class="form-group">
+				<label for="candidates">Candidates: </label>
+				<input type="number" min="1" class="form-control" id="candidates">
+			</div>
+		</form>
+	</div>
+
+	<a class="btn btn-primary btn-lg center-block" role="button" id="jj">JJ Vote Type</a>
+	<br/>
+	<a class="btn btn-primary btn-lg center-block disabled" role="button" id="faa">"For/Against/Abstain" Vote Type</a>
+
+	<div class="alert alert-danger" role="alert" id="errorDiv">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		Number of experts or candidates invalid!
+	</div>
+</div>
+<script src="js/scripts/start.js"></script>
