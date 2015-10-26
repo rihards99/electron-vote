@@ -2,18 +2,13 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 			<button type="button" class="btn btn-primary navbar-btn navbar-left" id="backBtn"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back</button>
-            
-			<form class="navbar-form navbar-left" role="search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Number of Experts">
-                </div>
-                <button type="button" class="btn btn-default">Submit</button>
-            </form>
 			
 			<button type="button" class="btn btn-primary navbar-btn navbar-right" id="resultsBtn">Results <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
         </div>
     </div>
 </nav>
+
+<div class="alert alert-danger" role="alert"><h5 id="errorMsg"></h5></div>
 
 <div class="col-xs-10 col-xs-offset-1">
     <div class="panel panel-default" style="overflow-x: scroll">
