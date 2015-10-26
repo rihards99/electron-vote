@@ -14,6 +14,15 @@ function generateTable() {
     $(".table").html(html);
 }
 
+function calculateResults() {
+    $.each($("input[type='radio']"), function (k, v) {
+        if ($(v).is(':checked')) {
+            var expNumber = parseInt($(v).attr('name').substring(3));
+            window.score[expNumber][parseInt($(v).val())] += 1;
+        }
+    });
+}
+
 $(document).ready(function () {
     
     generateTable();
@@ -23,19 +32,7 @@ $(document).ready(function () {
     });
     
     $("#resultsBtn").click(function(){
+        calculateResults();
         setHtml('body', 'tmp/jj-results.html');
     });
-    
-//    $("input[type='radio']").change(function (e) {
-//        var score = {opt1: 0, opt2: 0, opt3: 0};
-//
-//        $.each($("input[type='radio']"), function (k, v) {
-//            if ($(v).is(':checked')) {
-//                score[$(v).val()] += 1;
-//            }
-//        });
-//
-//        var maxKey = getHighestValueKey(score);
-//        $("#currentWinner").html("C" + (parseInt(maxKey)+1));
-//    });
 });
