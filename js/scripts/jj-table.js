@@ -14,6 +14,22 @@ function generateTable() {
     $(".table").html(html);
 }
 
+function validateResults() {
+    var errorExp = null;
+    $.each(window.score, function (i, v) {
+        var checked = false;
+        $.each($("input[name='exp"+i+"']"), function (k, v) {
+            if ($(v).is(':checked')) checked = true;
+        });
+        
+        if (!checked) {
+            errorExp = parseInt(i)+1;
+            return false;
+        }
+    });
+    return errorExp;
+}
+
 function calculateResults() {
     $.each($("input[type='radio']"), function (k, v) {
         if ($(v).is(':checked')) {
@@ -25,6 +41,7 @@ function calculateResults() {
 
 $(document).ready(function () {
     
+    $(".alert").hide();
     generateTable();
     
     $("#backBtn").click(function(){
@@ -32,6 +49,14 @@ $(document).ready(function () {
     });
     
     $("#resultsBtn").click(function(){
+        
+        var validationError = validateResults();
+        if (validationError !== null){
+            $(".alert").show();
+            $("#errorMsg").html("Expert "+validationError+" not filled in!");
+            return;
+        }
+        
         calculateResults();
         setHtml('body', 'tmp/jj-results.html');
     });
