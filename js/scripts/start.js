@@ -17,6 +17,7 @@ $(document).ready(function () {
     });
     
     $("#faa").click(function(){
-        // TODO: 
+        initScore();
+        setHtml('body','tmp/faa-table.html');
     });
 });
