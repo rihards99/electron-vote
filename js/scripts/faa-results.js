@@ -6,6 +6,7 @@ $(document).ready(function () {
 
 
     var winnerIndex = 0, candidateLabels = [], Largest=0, MultipleWinners=[];
+
     for (var i = 0; i < vaar.length; i++) {
         if (vaar[i] > Largest){
             winnerIndex = i;
