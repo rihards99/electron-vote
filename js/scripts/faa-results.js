@@ -6,7 +6,6 @@ $(document).ready(function () {
 
 
     var winnerIndex = 0, candidateLabels = [], Largest=0, MultipleWinners=[];
-
     for (var i = 0; i < vaar.length; i++) {
         if (vaar[i] > Largest){
             winnerIndex = i;
@@ -19,7 +18,10 @@ $(document).ready(function () {
     }
     if(window.limit >= MultipleWinners.length){
         $(".alert").addClass("alert-success");
-        $("#currentWinner").html(candidateLabels[winnerIndex]);
+        for(var i=0; i<MultipleWinners.length;i++){
+            $("#currentWinner").append(MultipleWinners[i]+", ");
+        }
+         $("#currentWinner").append(" Congratulations !");
     }else {
         $(".alert").addClass("alert-warning");
         for (var i=0; i < MultipleWinners.length;i++){
