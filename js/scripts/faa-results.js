@@ -5,12 +5,28 @@ $(document).ready(function () {
     });
 
 
-    var winnerIndex = 0, candidateLabels = [];
+    var winnerIndex = 0, candidateLabels = [], Largest=0, MultipleWinners=[];
     for (var i = 0; i < vaar.length; i++) {
-        if (vaar[i] > vaar[i+1]) winnerIndex = i;
+        if (vaar[i] > Largest){
+            winnerIndex = i;
+            Largest = vaar[i];
+        }
+        if(vaar[i] == Largest){
+            MultipleWinners.push("C" + (i + 1));
+        }
         candidateLabels.push("C" + (i + 1));
     }
-    $("#currentWinner").html(candidateLabels[winnerIndex]);
+    if(window.limit >= MultipleWinners.length){
+        $(".alert").addClass("alert-success");
+        $("#currentWinner").html(candidateLabels[winnerIndex]);
+    }else {
+        $(".alert").addClass("alert-warning");
+        for (var i=0; i < MultipleWinners.length;i++){
+            $("#currentWinner").append(MultipleWinners[i]+", ");
+        }
+        $("#currentWinner").append(" Limit is "+window.limit+", Desired result is not achieved !");
+    }
+    
 
     var ctx = $("#chart").get(0).getContext("2d");
     var data = {
@@ -26,6 +42,8 @@ $(document).ready(function () {
             }
         ]
     };
+    console.log(MultipleWinners.length);
+    console.log(window.limit);
     var myBarChart = new Chart(ctx).Bar(data, {
         responsive: true
     });

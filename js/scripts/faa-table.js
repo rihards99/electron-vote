@@ -32,7 +32,7 @@ $(document).ready(function () {
     
     $("#resultsBtn").click(function(){
         calculateResults();
-        //console.log(vaar);
+        //console.log(window.limit);
         setHtml('body', 'tmp/faa-results.html');
     });
     
