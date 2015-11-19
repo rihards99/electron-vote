@@ -15,14 +15,13 @@ $(document).ready(function () {
     });
     
     // Found in js/scripts/start.js
-    var result = calculateWinners(candidateRes, window.limit);
+    var result  = calculateWinners(candidateRes, window.limit);
 
     //  Generate labels for every result value in the chart
     var candidateLabels = [];
     for (var i = 0; i < candidateRes.length; i++) {
         candidateLabels.push("C" + (i + 1));
     }
-    console.log(result); return; // temp stop point
 
     $(".alert").addClass("alert-" + result.status);
     $("#currentWinner").html(result.msg);

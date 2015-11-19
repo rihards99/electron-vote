@@ -4,32 +4,17 @@ $(document).ready(function () {
         setHtml('body', 'tmp/faa-table.html');
     });
 
+    // Found in js/scripts/start.js
+    var result  = calculateWinners(vaar, window.limit);
 
-    var winnerIndex = 0, candidateLabels = [], Largest=0, MultipleWinners=[];
+    //  Generate labels for every result value in the chart
+    var candidateLabels = [];
     for (var i = 0; i < vaar.length; i++) {
-        if (vaar[i] > Largest){
-            winnerIndex = i;
-            Largest = vaar[i];
-        }
-        if(vaar[i] == Largest){
-            MultipleWinners.push("C" + (i + 1));
-        }
         candidateLabels.push("C" + (i + 1));
     }
-    if(window.limit >= MultipleWinners.length){
-        $(".alert").addClass("alert-success");
-        for(var i=0; i<MultipleWinners.length;i++){
-            $("#currentWinner").append(MultipleWinners[i]+", ");
-        }
-         $("#currentWinner").append(" Congratulations !");
-    }else {
-        $(".alert").addClass("alert-warning");
-        for (var i=0; i < MultipleWinners.length;i++){
-            $("#currentWinner").append(MultipleWinners[i]+", ");
-        }
-        $("#currentWinner").append(" Limit is "+window.limit+", Desired result is not achieved !");
-    }
-    
+
+    $(".alert").addClass("alert-" + result.status);
+    $("#currentWinner").html(result.msg);
 
     var ctx = $("#chart").get(0).getContext("2d");
     var data = {
@@ -45,8 +30,7 @@ $(document).ready(function () {
             }
         ]
     };
-    console.log(MultipleWinners.length);
-    console.log(window.limit);
+
     var myBarChart = new Chart(ctx).Bar(data, {
         responsive: true
     });
