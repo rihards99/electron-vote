@@ -4,6 +4,7 @@ $(document).ready(function () {
         setHtml('body', 'tmp/jj-table.html');
     });
 
+    // Calculate results for every candidate out of the score recieved
     var candidateRes = [];
     $.each(window.score, function (i, v) {
         for (var j = 0; j < window.score[0].length; j++) {
@@ -12,34 +13,19 @@ $(document).ready(function () {
             candidateRes[j] += window.score[i][j];
         }
     });
+    
+    // Found in js/scripts/start.js
+    var result = calculateWinners(candidateRes, window.limit);
 
-    console.log(candidateRes);
-
-    var winnerIndex = 0, largest = 0, candidateLabels = [], multipleWinners = [];
-    for (var i = 0; i < window.score[0].length; i++) {
-        if (window.score[i] > largest) {
-            winnerIndex = i;
-            largest = window.score[i];
-        }
-
-        if (window.score[i] === largest) {
-            multipleWinners.push("C" + (i + 1));
-        }
-
+    //  Generate labels for every result value in the chart
+    var candidateLabels = [];
+    for (var i = 0; i < candidateRes.length; i++) {
         candidateLabels.push("C" + (i + 1));
     }
-    console.log(multipleWinners);
-//    $("#currentWinner").html(candidateLabels[winnerIndex]);
-    if (window.limit >= multipleWinners.length) {
-        $(".alert").addClass("alert-success");
-        $("#currentWinner").html(candidateLabels[winnerIndex]);
-    } else {
-        $(".alert").addClass("alert-warning");
-        for (var i = 0; i < multipleWinners.length; i++) {
-            $("#currentWinner").append(multipleWinners[i] + ", ");
-        }
-        $("#currentWinner").append(" Limit is " + window.limit + ", Desired result is not achieved !");
-    }
+    console.log(result); return; // temp stop point
+
+    $(".alert").addClass("alert-" + result.status);
+    $("#currentWinner").html(result.msg);
 
     var ctx = $("#chart").get(0).getContext("2d");
     var data = {

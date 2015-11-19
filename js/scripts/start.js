@@ -23,3 +23,12 @@ $(document).ready(function () {
         setHtml('body','tmp/faa-table.html');
     });
 });
+
+function calculateWinners(results, limit) {
+    console.log("implement me");
+    res = {
+        status: "success", 
+        msg: "Winners: X,Y,Z"
+    };
+    return res;
+}
