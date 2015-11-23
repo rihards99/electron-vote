@@ -10,9 +10,10 @@ $(document).ready(function () {
     var result  = calculateWinners(candidateRes, window.limit);
 
     //  Generate labels for every result value in the chart
-    var candidateLabels = [];
+    var candidateLabels = [], textString="";
     for (var i = 0; i < candidateRes.length; i++) {
         candidateLabels.push("C" + (i + 1));
+        textString= textString+"C" + (i + 1)+'='+candidateRes[i]+"<br/>";
     }
 
     $(".alert").addClass("alert-" + result.status);
@@ -32,8 +33,9 @@ $(document).ready(function () {
             }
         ]
     };
-
+    
     var myBarChart = new Chart(ctx).Bar(data, {
         responsive: true
     });
+   // document.getElementById('Results').innerHTML= "<h3>"+textString+"</h3>"; 
 });
