@@ -15,19 +15,20 @@ $(document).ready(function () {
     
     $("#jj").click(function(){
         //Check if limit is not greater than Candidates 
-        if( ($("#candidates").val()) < ($("#limit").val())  ){
+        if( parseInt($("#candidates").val()) < parseInt($("#limit").val())  ){
             $('#errorDiv').text("Winners limit cannot be greater than candidates !");
-            $('#errorDiv').show();// Why the error div ? Because i kinde dislike the dismiss button... it removes whole div...
+            $('#errorDiv').show();// Why the error div ? Because I kinda dislike the dismiss button... it removes whole div...
+        console.log("1)"+$("#candidates").val()+" <"+$("#limit").val());
         }
-        else{
-        initScore();
-        setHtml('body', 'tmp/jj-table.html');
+        else{console.log("2)"+$("#candidates").val()+" <"+$("#limit").val());
+        //initScore();
+        //setHtml('body', 'tmp/jj-table.html');
     }
     });
     
     $("#faa").click(function(){
         //Check if limit is not greater than Candidates 
-        if( ($("#candidates").val()) < ($("#limit").val())  ){
+        if( parseInt($("#candidates").val()) < parseInt($("#limit").val())  ){
             $('#errorDiv').text("Winners limit cannot be greater than candidates !");
             $('#errorDiv').show(); 
         }
