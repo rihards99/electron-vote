@@ -1,6 +1,13 @@
 $(document).ready(function () {
 
     $("#backBtn").click(function () {
+        candidateRes.length=0;
+        candidateRes=[]; 
+        $.each(window.score, function (i, v) {
+        for (var j = 0; j < window.score[0].length; j++) {
+            window.score[i][j]=0;
+        }
+    });
         setHtml('body', 'tmp/jj-table.html');
     });
 

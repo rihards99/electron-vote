@@ -1,15 +1,17 @@
 $(document).ready(function () {
 
     $("#backBtn").click(function () {
+        candidateRes.length=0;
+        candidateRes=[]; 
         setHtml('body', 'tmp/faa-table.html');
     });
 
     // Found in js/scripts/start.js
-    var result  = calculateWinners(vaar, window.limit);
+    var result  = calculateWinners(candidateRes, window.limit);
 
     //  Generate labels for every result value in the chart
     var candidateLabels = [];
-    for (var i = 0; i < vaar.length; i++) {
+    for (var i = 0; i < candidateRes.length; i++) {
         candidateLabels.push("C" + (i + 1));
     }
 
@@ -26,7 +28,7 @@ $(document).ready(function () {
                 strokeColor: "rgba(220,220,220,0.8)",
                 highlightFill: "rgba(220,220,220,0.75)",
                 highlightStroke: "rgba(220,220,220,1)",
-                data: vaar
+                data: candidateRes
             }
         ]
     };

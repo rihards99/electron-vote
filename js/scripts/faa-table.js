@@ -1,10 +1,9 @@
-
 function generateTable() {
     var html = "<tr><th>Expert</th>";
-    vaar=[];    
+    candidateRes=[];    
     for (i = 0; i < window.score[0].length; i++) { 
         html += "<th>C" + (i+1) + "</th>";
-        vaar[i]=0;
+        candidateRes[i]=0;
     }
     html += "</tr>";
     $.each(window.score, function(k,v){
@@ -17,9 +16,9 @@ function generateTable() {
     $(".table").html(html);
 }
 function calculateResults() {
-   $.each($("select"), function (k, v) {
-       Vote = parseInt($(v).attr('name'));
-       vaar[Vote] = parseInt($(v).val()) + vaar[Vote];     
+   $.each($("select"), function (k, v) {//For each select 
+       Vote = parseInt($(v).attr('name')); // Get Name
+       candidateRes[Vote] = parseInt($(v).val()) + candidateRes[Vote];  //Gets votes for each candidate in summ   
     });
 }
 $(document).ready(function () {
@@ -32,7 +31,6 @@ $(document).ready(function () {
     
     $("#resultsBtn").click(function(){
         calculateResults();
-        //console.log(window.limit);
         setHtml('body', 'tmp/faa-results.html');
     });
     

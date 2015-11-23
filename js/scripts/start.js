@@ -14,13 +14,27 @@ $(document).ready(function () {
     $("#errorDiv").hide();
     
     $("#jj").click(function(){
+        //Check if limit is not greater than Candidates 
+        if( ($("#candidates").val()) < ($("#limit").val())  ){
+            $('#errorDiv').text("Winners limit cannot be greater than candidates !");
+            $('#errorDiv').show();// Why the error div ? Because i kinde dislike the dismiss button... it removes whole div...
+        }
+        else{
         initScore();
         setHtml('body', 'tmp/jj-table.html');
+    }
     });
     
     $("#faa").click(function(){
+        //Check if limit is not greater than Candidates 
+        if( ($("#candidates").val()) < ($("#limit").val())  ){
+            $('#errorDiv').text("Winners limit cannot be greater than candidates !");
+            $('#errorDiv').show(); 
+        }
+        else{
         initScore();
         setHtml('body','tmp/faa-table.html');
+    }
     });
 });
 
@@ -69,7 +83,7 @@ function calculateWinners(results, limit) {
         else {
             Array.prototype.push.apply(winners, ranks[val]); // merge arrays
             res.status = "warning";
-            res.msg = "Warning: vote has " + (winners.length + ranks[val].length) + 
+            res.msg = "Warning: vote has " + (winners.length /*+ ranks[val].length*/) + 
                       " winners: " + getWinnerString(winners) + " (specified limit was " + limit + ")." +
                       " Tie between " + getWinnerString(ranks[val]);
             return false; // breaks the $.each loop
