@@ -18,11 +18,10 @@ $(document).ready(function () {
         if( parseInt($("#candidates").val()) < parseInt($("#limit").val())  ){
             $('#errorDiv').text("Winners limit cannot be greater than candidates !");
             $('#errorDiv').show();// Why the error div ? Because I kinda dislike the dismiss button... it removes whole div...
-        console.log("1)"+$("#candidates").val()+" <"+$("#limit").val());
         }
-        else{console.log("2)"+$("#candidates").val()+" <"+$("#limit").val());
-        //initScore();
-        //setHtml('body', 'tmp/jj-table.html');
+        else{
+        initScore();
+        setHtml('body', 'tmp/jj-table.html');
     }
     });
     
